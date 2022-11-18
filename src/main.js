@@ -6,7 +6,15 @@ import './style.css';
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
 const productsLista = document.querySelector('.products');
-const load = document.querySelector('#textoLoad')
+const load = document.querySelector('#textoLoad');
+
+const carregando = () => {
+  load.className = 'loading';
+  load.innerHTML = 'carregando...';
+};
+const removeCarregando = () => {
+  load.remove();
+};
 
 const addProdutos = async () => {
   carregando();
@@ -18,14 +26,6 @@ const addProdutos = async () => {
     productsLista.appendChild(lista);
   });
 };
-
-const carregando = () => {
-  load.className = 'loading'
-  load.innerHTML = 'carregando...'
-}
-const removeCarregando = () => {
-  load.remove();
-}
 
 window.onload = () => {
   addProdutos();
