@@ -20,11 +20,11 @@ describe('Teste a função fetchProductsList', () => {
   });
 
   it('Teste se o retorno da função fetchProductsList com o argumento computador é uma estrutura de dados igual ao objeto computadorSearch, que já está importado no arquivo.', () => {
-     fetchProductsList('computador').then((data) => {
+    fetchProductsList('computador').then((data) => {
       expect(data).toEqual(computadorSearch);
     })
   });
-  
+
   it('Teste se, ao chamar a função fetchProductsList sem argumento, retorna um erro com a mensagem: Termo de busca não informado.', () => {
     expect(fetchProductsList()).rejects.toThrow(Error('Termo de busca não informado'));
 
