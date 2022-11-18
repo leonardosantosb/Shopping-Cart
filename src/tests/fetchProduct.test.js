@@ -1,6 +1,34 @@
 import './mocks/fetchSimulator';
-import { fetchProduct, } from '../helpers/fetchFunctions';
-import product from './mocks/product';
-import computadorSearch from './mocks/search';
+import { fetchProduct } from '../helpers/fetchFunctions';
+import { product } from './mocks/product';
+
 
 // implemente seus testes aqui
+
+describe('Teste a função fetchProduct', () => {
+
+  it('Teste se é uma função', () => {
+    expect(typeof fetchProduct).toBe('function');
+  });
+
+  it('Execute a função fetchProduct com o argumento MLB1405519561 e teste se fetch foi chamada;', () => {
+     fetchProduct('MLB1405519561');
+    expect(fetch).toHaveBeenCalled();
+  });
+
+  it('Teste se, ao chamar a função fetchProduct com o argumento MLB1405519561, a função fetch utiliza o endpoint ', () => {
+    fetchProduct('MLB1405519561');
+    expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1405519561')
+  });
+
+  it('Teste se o retorno da função fetchProduct com o argumento MLB1405519561 é uma estrutura de dados igual ao objeto produto, que já está importado no arquivo.', async () => {
+    await expect(fetchProduct('MLB1405519561')).resolves.toEqual(product)
+      
+  });
+
+  it('Teste se, ao chamar a função fetchProduct sem argumento, retorna um erro com a mensagem: ID não informado.', () => {
+    expect(fetchProduct()).rejects.toEqual(new Error('ID não informado'));
+
+  });
+});
+
